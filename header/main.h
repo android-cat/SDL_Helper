@@ -1,7 +1,7 @@
 #ifdef _WIN32
-#include <SDL.h>//SDL‚ğg‚¤ˆ×‚ÉƒCƒ“ƒNƒ‹[ƒh‚·‚é
-#include<sdl_image.h>//SDL_Image‚ğg‚¤ˆ×‚ÉƒCƒ“ƒNƒ‹[ƒh‚·‚é
-#include<sdl_ttf.h>//SDL_TTF‚ğg‚¤ˆ×‚ÉƒCƒ“ƒNƒ‹[ƒh‚·‚é
+#include <SDL.h>//SDLã‚’ä½¿ã†ç‚ºã«ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹
+#include<sdl_image.h>//SDL_Imageã‚’ä½¿ã†ç‚ºã«ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹
+#include<sdl_ttf.h>//SDL_TTFã‚’ä½¿ã†ç‚ºã«ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹
 #include<sdl_mixer.h>
 #include<Windows.h>
 #pragma comment(lib, "winmm.lib")
@@ -13,7 +13,7 @@
 #endif
 #include<iostream>
 #include<string>
-#define FONT_PATH "Font/Mamelon-4-Hi-Regular.otf"
+#define FONT_PATH "Font/"
 #define LOOP -1
 #define NORMAL 0
 //#define FONT_PATH "Font/ipaexg.ttf"
