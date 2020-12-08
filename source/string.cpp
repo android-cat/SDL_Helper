@@ -2,22 +2,22 @@
 #ifdef _WIN32
 std::string SjistoUTF8(std::string Sjis)//Change UTF8
 {
-	//UTF16‚Ö•ÏŠ·Œã‚Ì•¶š—ñ’·‚ğ“¾‚é
+	//UTF16ã¸å¤‰æ›å¾Œã®æ–‡å­—åˆ—é•·ã‚’å¾—ã‚‹
 	int lenghtUTF16 = MultiByteToWideChar(CP_THREAD_ACP, 0, Sjis.c_str(), Sjis.size() + 1, NULL, 0);
 
-	//•K—v‚È•ª‚¾‚¯Unicode•¶š—ñ‚Ìƒoƒbƒtƒ@‚ğŠm•Û
+	//å¿…è¦ãªåˆ†ã ã‘Unicodeæ–‡å­—åˆ—ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 	wchar_t* bufUnicode = new wchar_t[lenghtUTF16];
 
-	//ShiftJIS‚©‚çUnicode‚Ö•ÏŠ·
+	//ShiftJISã‹ã‚‰Unicodeã¸å¤‰æ›
 	MultiByteToWideChar(CP_THREAD_ACP, 0, Sjis.c_str(),Sjis.size() + 1, bufUnicode, lenghtUTF16);
 
-	//UTF8‚Ö•ÏŠ·Œã‚Ì•¶š—ñ’·‚ğ“¾‚é
+	//UTF8ã¸å¤‰æ›å¾Œã®æ–‡å­—åˆ—é•·ã‚’å¾—ã‚‹
 	int lengthUTF8 = WideCharToMultiByte(CP_UTF8, 0, bufUnicode, -1, NULL, 0, NULL, NULL);
 
-	//•K—v‚È•ª‚¾‚¯UTF8•¶š—ñ‚Ìƒoƒbƒtƒ@‚ğŠm•Û
+	//å¿…è¦ãªåˆ†ã ã‘UTF8æ–‡å­—åˆ—ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 	char* bufUTF8 = new char[lengthUTF8];
 
-	//Unicode‚©‚çUTF8‚Ö•ÏŠ·
+	//UTF16ã‹ã‚‰UTF8ã¸å¤‰æ›
 	WideCharToMultiByte(CP_UTF8, 0, bufUnicode, lenghtUTF16 - 1, bufUTF8, lengthUTF8, NULL, NULL);
 
 	std::string UTF8(bufUTF8);
@@ -44,16 +44,16 @@ int DrawString(SDL_Renderer** renderer, TTF_Font* font,std::string string,int x,
 	texture = SDL_CreateTextureFromSurface(*renderer, surface);
     if (texture == NULL)return 1;
 
-    //•¶š‚ğ•`Ê‚µ‚½Texture‚ÌƒTƒCƒY‚ğæ“¾‚·‚é      
+    //æ–‡å­—ã‚’æå†™ã—ãŸTextureã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹      
     int text_x,text_y;
     SDL_QueryTexture(texture, NULL, NULL, &text_x, &text_y);
     SDL_Rect txtRect = { 0,0,text_x,text_y};
     SDL_Rect pasteRect = {x,y,text_x,text_y};
 
-    //Texture‚ğ•`Ê‚·‚é            
+    //Textureã‚’æå†™ã™ã‚‹            
     SDL_RenderCopy(*renderer, texture, &txtRect, &pasteRect);
-    //window‚ÉƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é      
+    //windowã«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹      
     SDL_RenderPresent(*renderer);
-    SDL_DestroyTexture(texture);//‚à‚¤g‚í‚È‚¢‚Ì‚ÅÁ‚·
+    SDL_DestroyTexture(texture);//ã‚‚ã†ä½¿ã‚ãªã„ã®ã§æ¶ˆã™
     return 0;
 }
