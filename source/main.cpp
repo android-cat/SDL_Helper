@@ -1,45 +1,45 @@
 #include"main.h"
-#define SCREEN_X 1280//SCREEN_X‚Æ‘Å‚Â‚Æ1280‚ª“ü—Í‚³‚ê‚é‚æ‚¤‚É‚·‚é
-#define SCREEN_Y 720//SCREEN_Y‚Æ‘Å‚Â‚Æ720‚ª“ü—Í‚³‚ê‚é‚æ‚¤‚É‚·‚é
+#define SCREEN_X 1280//SCREEN_Xã¨æ‰“ã¤ã¨1280ãŒå…¥åŠ›ã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
+#define SCREEN_Y 720//SCREEN_Yã¨æ‰“ã¤ã¨720ãŒå…¥åŠ›ã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
 int Init(SDL_Window **window,SDL_Renderer**renderer,TTF_Font **font) {//Initialize
-	if (SDL_Init(SDL_INIT_AUDIO) == -1 || SDL_Init(SDL_INIT_VIDEO)==-1||IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG)==-1||TTF_Init()==-1||Mix_Init(MIX_INIT_MP3)) {//‰Šú‰»
+	if (SDL_Init(SDL_INIT_AUDIO) == -1 || SDL_Init(SDL_INIT_VIDEO)==-1||IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG)==-1||TTF_Init()==-1||Mix_Init(MIX_INIT_MP3)) {//åˆæœŸåŒ–
 		TTF_Quit();
-		IMG_Quit();//SDL_IMage‚ğI—¹‚·‚éˆ—
-		SDL_Quit();//SDL‚ğI—¹‚·‚éˆ—
-		return 1;//ƒvƒƒOƒ‰ƒ€‚ÉƒGƒ‰[‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
+		IMG_Quit();//SDL_IMageã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		SDL_Quit();//SDLã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		return 1;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¨ãƒ©ãƒ¼ã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
 	}
-	*window = SDL_CreateWindow("TestWindow", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_X, SCREEN_Y, 0);//ƒEƒBƒ“ƒhƒEì¬
-	if (*window == NULL) {//ƒEƒBƒ“ƒhƒE‚ªì¬‚Å‚«‚Ä‚¢‚È‚©‚Á‚½‚Æ‚«
-		SDL_DestroyWindow(*window);//ƒEƒBƒ“ƒhƒE‚ğÌ‚Ä‚éˆ—
-		IMG_Quit();//SDL_IMage‚ğI—¹‚·‚éˆ—
-		SDL_Quit();//SDL‚ğI—¹‚·‚éˆ—
-		return 1;//ƒvƒƒOƒ‰ƒ€‚ÉƒGƒ‰[‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
+	*window = SDL_CreateWindow("TestWindow", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_X, SCREEN_Y, 0);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
+	if (*window == NULL) {//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒä½œæˆã§ãã¦ã„ãªã‹ã£ãŸã¨ã
+		SDL_DestroyWindow(*window);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¨ã¦ã‚‹å‡¦ç†
+		IMG_Quit();//SDL_IMageã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		SDL_Quit();//SDLã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		return 1;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¨ãƒ©ãƒ¼ã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
 	}
-	*renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED);
-	if (*renderer == NULL) {//ƒŒƒ“ƒ_[‚ªì¬‚Å‚«‚Ä‚¢‚È‚©‚Á‚½‚Æ‚«
-		SDL_DestroyRenderer(*renderer);//ƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚·‚é‚½‚ß‚Ìî•ñ‚ğíœ‚·‚é
-		SDL_DestroyWindow(*window);//ƒEƒBƒ“ƒhƒE‚ğÌ‚Ä‚éˆ—
-		IMG_Quit();//SDL_IMage‚ğI—¹‚·‚éˆ—
-		SDL_Quit();//SDL‚ğI—¹‚·‚éˆ—
-		return 1;//ƒvƒƒOƒ‰ƒ€‚ÉƒGƒ‰[‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
+	*renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED||SDL_RENDERER_PRESENTVSYNC);
+	if (*renderer == NULL) {//ãƒ¬ãƒ³ãƒ€ãƒ¼ãŒä½œæˆã§ãã¦ã„ãªã‹ã£ãŸã¨ã
+		SDL_DestroyRenderer(*renderer);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã™ã‚‹ãŸã‚ã®æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹
+		SDL_DestroyWindow(*window);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¨ã¦ã‚‹å‡¦ç†
+		IMG_Quit();//SDL_IMageã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		SDL_Quit();//SDLã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		return 1;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¨ãƒ©ãƒ¼ã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
 	}
 	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) {
 		Mix_CloseAudio();
-		SDL_DestroyRenderer(*renderer);//ƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚·‚é‚½‚ß‚Ìî•ñ‚ğíœ‚·‚é
-		SDL_DestroyWindow(*window);//ƒEƒBƒ“ƒhƒE‚ğÌ‚Ä‚éˆ—
-		IMG_Quit();//SDL_IMage‚ğI—¹‚·‚éˆ—
-		SDL_Quit();//SDL‚ğI—¹‚·‚éˆ—
+		SDL_DestroyRenderer(*renderer);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã™ã‚‹ãŸã‚ã®æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹
+		SDL_DestroyWindow(*window);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¨ã¦ã‚‹å‡¦ç†
+		IMG_Quit();//SDL_IMageã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		SDL_Quit();//SDLã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
 		return -1; 
 	}
 	*font = TTF_OpenFont(FONT_PATH, 40);
 	if (*font == NULL) {
 		Mix_CloseAudio();
-		SDL_DestroyRenderer(*renderer);//ƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚·‚é‚½‚ß‚Ìî•ñ‚ğíœ‚·‚é
-		SDL_DestroyWindow(*window);//ƒEƒBƒ“ƒhƒE‚ğÌ‚Ä‚éˆ—
+		SDL_DestroyRenderer(*renderer);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã™ã‚‹ãŸã‚ã®æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹
+		SDL_DestroyWindow(*window);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¨ã¦ã‚‹å‡¦ç†
 		TTF_Quit();
-		IMG_Quit();//SDL_IMage‚ğI—¹‚·‚éˆ—
-		SDL_Quit();//SDL‚ğI—¹‚·‚éˆ—
-		return 1;//ƒvƒƒOƒ‰ƒ€‚ÉƒGƒ‰[‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
+		IMG_Quit();//SDL_IMageã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		SDL_Quit();//SDLã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+		return 1;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¨ãƒ©ãƒ¼ã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
 	}
 	return 0;
 }
@@ -47,28 +47,28 @@ int Init(SDL_Window **window,SDL_Renderer**renderer,TTF_Font **font) {//Initiali
 void Quit() {//Exit programs
 	Mix_Quit();
 	TTF_Quit();
-	IMG_Quit();//SDL_IMage‚ğI—¹‚·‚éˆ—
-	SDL_Quit();//SDL‚ğI—¹‚·‚éˆ—
+	IMG_Quit();//SDL_IMageã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
+	SDL_Quit();//SDLã‚’çµ‚äº†ã™ã‚‹å‡¦ç†
 }
 
 
 /*int main(int argc, char** argv) {//Sample
-	SDL_Surface* image=NULL;//‰æ‘œ‚ğ“ü‚ê‚é—p
+	SDL_Surface* image=NULL;//ç”»åƒã‚’å…¥ã‚Œã‚‹ç”¨
 	SDL_Surface* image2 = NULL;
 	Mix_Music* music;
-	SDL_Window* window=NULL;//ƒEƒBƒ“ƒhƒE‚Ìî•ñ“ü‚ê‚é—p
-	SDL_Renderer* renderer=NULL;//ƒEƒBƒ“ƒhƒE‚ğg‚¤ˆ×‚Ìƒf[ƒ^—p
+	SDL_Window* window=NULL;//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æƒ…å ±å…¥ã‚Œã‚‹ç”¨
+	SDL_Renderer* renderer=NULL;//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ã†ç‚ºã®ãƒ‡ãƒ¼ã‚¿ç”¨
 	SDL_Event event;
 	TTF_Font* font=NULL;
 	bool breakflag = false;
-	//‰Šú‰»•”
-	if (Init(&window,&renderer,&font))return 1;//ƒvƒƒOƒ‰ƒ€‚ÉƒGƒ‰[‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
+	//åˆæœŸåŒ–éƒ¨
+	if (Init(&window,&renderer,&font))return 1;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¨ãƒ©ãƒ¼ã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
 
-	//‰æ‘œ“Ç‚İ‚Ş•”
-	if (LoadImage(&image, "Resource/"))return 1;//ƒvƒƒOƒ‰ƒ€‚ÉƒGƒ‰[‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
-	if (LoadImage(&image2, "Resource/"))return 1;//ƒvƒƒOƒ‰ƒ€‚ÉƒGƒ‰[‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
+	//ç”»åƒèª­ã¿è¾¼ã‚€éƒ¨
+	if (LoadImage(&image, "Resource/"))return 1;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¨ãƒ©ãƒ¼ã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
+	if (LoadImage(&image2, "Resource/"))return 1;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«ã‚¨ãƒ©ãƒ¼ã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
 	if(LoadSound(&music,"Resource/"))return 1;
-	//•`‰æ•”
+	//æç”»éƒ¨
 	while (1) {
 		while (SDL_PollEvent(&event))
 			if (event.type == SDL_QUIT) {
@@ -77,24 +77,25 @@ void Quit() {//Exit programs
 		}
 		if (breakflag)break;
 		CleanScreen(&renderer);
-		SDL_Delay(33);//2000ƒ~ƒŠ•b(2•b)‘Ò‚Â‚Æ“`‚¦‚é
+		SDL_Delay(20);//20ãƒŸãƒªç§’å¾…ã¤ã¨ä¼ãˆã‚‹
 		DrawPicture(&renderer, image, 0, 0);
-		SDL_Delay(33);//2000ƒ~ƒŠ•b(2•b)‘Ò‚Â‚Æ“`‚¦‚é
+		SDL_Delay(20);//20ãƒŸãƒªç§’å¾…ã¤ã¨ä¼ãˆã‚‹
 		CleanScreen(&renderer);
-		SDL_Delay(33);
+		SDL_Delay(20);
 		DrawPicture(&renderer, image2,300,300);
-		SDL_Delay(33);
+		SDL_Delay(20);
 		CleanScreen(&renderer);
-		SDL_Delay(33);
-		DrawString(&renderer,font,"Šw‹‰‚¤‚ñ‚¿unti",100, 100);
+		SDL_Delay(20);
+		DrawString(&renderer,font,"å­¦ç´šã†ã‚“ã¡unti",100, 100);
 		playSound(&music,NORMAL);
-		SDL_Delay(33);
+		SDL_Delay(20);
+		//ã‚ã‹ã‚Šã‚„ã™ã„ã‚ˆã†ã«20ãƒŸãƒªç§’ç½®ã„ã¦ã„ã‚‹ãŒã€è‡ªå‹•ã§ãƒ¢ãƒ‹ã‚¿ãƒ¼ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã¨åŒæœŸã™ã‚‹
 	}
-	//I—¹ˆ—
-	SDL_UnlockSurface(image);//‰æ‘œƒf[ƒ^‚ğÌ‚Ä‚éˆ—
-	SDL_DestroyRenderer(renderer);//ƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚·‚é‚½‚ß‚Ìî•ñ‚ğíœ‚·‚é
-	SDL_DestroyWindow(window);//ƒEƒBƒ“ƒhƒE‚ğíœ‚·‚é
+	//çµ‚äº†å‡¦ç†
+	SDL_UnlockSurface(image);//ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æ¨ã¦ã‚‹å‡¦ç†
+	SDL_DestroyRenderer(renderer);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã™ã‚‹ãŸã‚ã®æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹
+	SDL_DestroyWindow(window);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤ã™ã‚‹
 	TTF_CloseFont(font);
 	Quit();
-	return 0;//ƒvƒƒOƒ‰ƒ€‚ÉI‚í‚è‚¾‚©‚çI—¹‚·‚é‚Æ“`‚¦‚é
+	return 0;//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«çµ‚ã‚ã‚Šã ã‹ã‚‰çµ‚äº†ã™ã‚‹ã¨ä¼ãˆã‚‹
 }*/
