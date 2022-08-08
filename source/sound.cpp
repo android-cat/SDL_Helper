@@ -6,4 +6,5 @@ int LoadSound(Mix_Music** music,std::string filename) {//
 }
 int playSound(Mix_Music* music,int type) {
 	Mix_PlayMusic(music,type);
+	return 0;
 }
