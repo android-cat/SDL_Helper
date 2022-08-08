@@ -2,7 +2,7 @@
 #define SCREEN_X 1280//SCREEN_Xと打つと1280が入力されるようにする
 #define SCREEN_Y 720//SCREEN_Yと打つと720が入力されるようにする
 int Init(SDL_Window **window,SDL_Renderer**renderer,TTF_Font **font) {//Initialize
-	if (SDL_Init(SDL_INIT_AUDIO) == -1 || SDL_Init(SDL_INIT_VIDEO)==-1||IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG)==-1||TTF_Init()==-1||Mix_Init(MIX_INIT_MP3)) {//初期化
+	if (SDL_Init(SDL_INIT_AUDIO) == -1 || SDL_Init(SDL_INIT_VIDEO)==-1||IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG)==-1||TTF_Init()==-1||Mix_Init(MIX_INIT_MP3==-1)) {//初期化
 		TTF_Quit();
 		IMG_Quit();//SDL_IMageを終了する処理
 		SDL_Quit();//SDLを終了する処理
@@ -87,7 +87,7 @@ void Quit() {//Exit programs
 		CleanScreen(&renderer);
 		SDL_Delay(20);
 		DrawString(&renderer,font,"学級うんちunti",100, 100);
-		playSound(&music,NORMAL);
+		playSound(music,NORMAL);
 		SDL_Delay(20);
 		//わかりやすいように20ミリ秒置いているが、自動でモニターのリフレッシュレートと同期する
 	}
